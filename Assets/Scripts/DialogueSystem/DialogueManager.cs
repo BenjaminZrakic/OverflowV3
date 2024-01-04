@@ -14,6 +14,8 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject dialogueBox;
 
+    InputAction interactAction;
+
     Animator dialogueAnimator;
 
     // Start is called before the first frame update
@@ -21,6 +23,8 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         dialogueAnimator = dialogueBox.GetComponent<Animator>();
+        interactAction = GetComponent<PlayerInput>().actions["Interact"];
+        interactAction.performed += DisplayNextSentence;
     }
 
     public void StartDialogue (Dialogue dialogue){
@@ -40,6 +44,18 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void DisplayNextSentence(){
+        if(sentences.Count == 0){
+            EndDialogue();
+            return;
+        }
+
+        string sentence = sentences.Dequeue();
+        //Debug.Log(sentence);
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
+    }
+
+    public void DisplayNextSentence(InputAction.CallbackContext obj){
         if(sentences.Count == 0){
             EndDialogue();
             return;
