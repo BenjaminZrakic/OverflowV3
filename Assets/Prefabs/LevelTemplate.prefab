@@ -4570,7 +4570,8 @@ MonoBehaviour:
   nameText: {fileID: 821290429571804420}
   dialogueText: {fileID: 2945964900288357683}
   dialogueBox: {fileID: 2247195455799516295}
-  player: {fileID: 1821619285029585609}
+  gameInput: {fileID: 5385982427689327486}
+  interactor: {fileID: 78533797840623245}
 --- !u!114 &3180214614356356003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5951,7 +5952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6688863297101100615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.066750616, y: -0.9184204, z: 0.34782743, w: 0.17625158}
+  m_LocalRotation: {x: 0.06675289, y: -0.9184192, z: 0.347827, w: 0.17625754}
   m_LocalPosition: {x: 11.172384, y: 7.0699997, z: 3.299975}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -7612,7 +7613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9101099752674552226}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.066750616, y: -0.9184204, z: 0.34782743, w: 0.17625158}
+  m_LocalRotation: {x: 0.06675289, y: -0.9184192, z: 0.347827, w: 0.17625754}
   m_LocalPosition: {x: 11.172384, y: 7.0699997, z: 3.299975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

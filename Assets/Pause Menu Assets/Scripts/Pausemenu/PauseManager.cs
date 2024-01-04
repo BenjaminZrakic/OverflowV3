@@ -333,7 +333,7 @@ namespace GreatArcStudios
             lastTexLimit = QualitySettings.globalTextureMipmapLimit;
             //set last shadow cascade 
             lastShadowCascade = QualitySettings.shadowCascades;
-            saveSettings.LoadGameSettings(File.ReadAllText(Application.persistentDataPath + "/" + saveSettings.fileName));
+            saveSettings.LoadGameSettings(File.ReadAllText(Application.dataPath + "/" + saveSettings.fileName));
             try
             {
                 densityINI = Terrain.activeTerrain.detailObjectDensity;
