@@ -32,12 +32,12 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         
-        direction = cameraTransform.forward;
-        origin = cameraTransform.position;
+       /* direction = cameraTransform.forward;
+        origin = cameraTransform.position;*/
         /*
-        direction = transform.up;
-        origin = transform.position;
-        */
+        direction = Vector3.down;
+        origin = new Vector3(transform.position.x,transform.position.y+10,transform.position.z);
+        
 
         RaycastHit hit;
 
@@ -56,8 +56,24 @@ public class Interactor : MonoBehaviour
         {
             interactableTarget.TargetOff();
             interactableTarget = null;
+        }*/
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.TryGetComponent<Interactable>(out interactableTarget))
+        {
+            //print("Love is everything in this world");
+            interactableTarget.TargetOn();
         }
     }
+
+    private void OnTriggerExit(Collider other) {
+        if(interactableTarget){
+            interactableTarget.TargetOff();
+            interactableTarget = null;
+        }
+    }
+
     private void Interact(InputAction.CallbackContext obj)
     {
         if (interactableTarget != null)
@@ -74,6 +90,7 @@ public class Interactor : MonoBehaviour
             print("nothing to interact!");
         }
     }
+    /*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -82,7 +99,7 @@ public class Interactor : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(origin, interactingRadius);
         Gizmos.DrawLine(origin,origin+direction * 50);
-    }
+    }*/
     private void OnDestroy()
     {
         interactAction.performed -= Interact;

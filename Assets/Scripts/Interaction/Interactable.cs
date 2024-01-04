@@ -28,7 +28,7 @@ public class Interactable : MonoBehaviour
 		//print("Found interactable, showing UI");
 		if (isInteractable && this!=null && interactableNameText!=null){
 			interactableNameText.ShowText(this);
-        	interactableNameText.SetInteractableNamePosition(this);
+        	//interactableNameText.SetInteractableNamePosition(this);
 		}
         
 	}
@@ -47,6 +47,7 @@ public class Interactable : MonoBehaviour
 	protected virtual void Interaction()
 	{
         print("interact with: " + this.name);
+		
     }
 
 	private void OnDrawGizmos()

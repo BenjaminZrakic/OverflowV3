@@ -64,7 +64,7 @@ public class HealthSystem : MonoBehaviour
     public void Die()
     {
         Instantiate(ragdoll, transform.position, transform.rotation);
-        Destroy(playerVisual);
+        Destroy(this.gameObject);
     }
     public void HitVFX(Vector3 hitPosition)
     {

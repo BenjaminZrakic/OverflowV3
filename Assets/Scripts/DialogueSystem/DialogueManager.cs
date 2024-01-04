@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text dialogueText;
 
     public GameObject dialogueBox;
+    public GameObject player;
 
     InputAction interactAction;
 
@@ -23,11 +24,15 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         dialogueAnimator = dialogueBox.GetComponent<Animator>();
-        interactAction = GetComponent<PlayerInput>().actions["Interact"];
-        interactAction.performed += DisplayNextSentence;
+        //interactAction = GetComponent<PlayerInput>().actions["Interact"];
+        
+
     }
 
     public void StartDialogue (Dialogue dialogue){
+
+        player.GetComponentInChildren<Interactor>().enabled = false;
+        player.GetComponent<PlayerControllerSimple>().enabled = false;
 
         print("Starting conversation with "+dialogue.name);
         dialogueAnimator.SetTrigger("open_dialogue");
@@ -41,6 +46,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextSentence();
+        //interactAction.performed += DisplayNextSentence;
     }
 
     public void DisplayNextSentence(){
@@ -75,6 +81,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
     void EndDialogue(){
+        //interactAction.performed -= DisplayNextSentence;
+        player.GetComponentInChildren<Interactor>().enabled = true;
+        player.GetComponent<PlayerControllerSimple>().enabled = true;
         dialogueAnimator.SetTrigger("close_dialogue");
         Debug.Log("End of conversation");
     }
