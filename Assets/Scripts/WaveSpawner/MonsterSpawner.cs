@@ -19,7 +19,7 @@ public class MonsterSpawner : MonoBehaviour
     public float spawnRange = 10;
     public List<GameObject> currentMonsters;
 
-    public GameObject Flower;
+    public GameObject SpawnAfterWavesObject;
 
 
     // Start is called before the first frame update
@@ -37,8 +37,8 @@ public class MonsterSpawner : MonoBehaviour
             if (currentWave < waves.Length)
                 SpawnWave();
             else{
-                if (Flower != null)
-                    Flower.SetActive(true);
+                if (SpawnAfterWavesObject != null)
+                    SpawnAfterWavesObject.SetActive(true);
             }
         }
     }
