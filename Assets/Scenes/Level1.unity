@@ -14061,7 +14061,7 @@ MonoBehaviour:
   m_Follow: {fileID: 7902169916465677700}
   m_Lens:
     FieldOfView: 56.94
-    OrthographicSize: 10
+    OrthographicSize: 9.25
     NearClipPlane: -2
     FarClipPlane: 500
     Dutch: 0
@@ -15412,8 +15412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 5
   SprintSpeed: 10
-  DashSpeed: 20
-  DashDuration: 0.2
+  DashSpeed: 25
+  DashDuration: 0.1
   DashCooldown: 0.5
   isDashing: 0
   canDash: 1
@@ -17532,7 +17532,7 @@ Camera:
   far clip plane: 500
   field of view: 56.94
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 9.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
