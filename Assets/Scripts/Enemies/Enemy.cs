@@ -59,7 +59,15 @@ public class Enemy : MonoBehaviour
             agent.SetDestination(player.transform.position);
         }
         newDestinationCD -= Time.deltaTime;
-        transform.LookAt(player.transform);
+
+        var direction = player.transform.position - transform.position;
+
+        // You might want to delete this line.
+        // Ignore the height difference.
+        direction.y = 0;
+
+        // Make the transform look in the direction.
+        transform.forward = direction;
     }
  
     private void OnCollisionEnter(Collision collision)

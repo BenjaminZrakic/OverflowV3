@@ -22,10 +22,11 @@ public class Interactor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cameraTransform = Camera.main.transform;
+        print("Yo im active pls work");
+        //cameraTransform = Camera.main.transform;
         layerMask = LayerMask.GetMask("Interactable","NPC");
  
-        interactAction = GetComponent<PlayerInput>().actions["Interact"];
+        interactAction = GetComponentInParent<PlayerInput>().actions["Interact"];
         interactAction.performed += Interact;
     }
     // Update is called once per frame
@@ -60,9 +61,19 @@ public class Interactor : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        print("Love is everything in this world");
         if(other.gameObject.TryGetComponent<Interactable>(out interactableTarget))
         {
-            //print("Love is everything in this world");
+            
+            interactableTarget.TargetOn();
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        print("Love is everything in this world");
+        if(other.gameObject.TryGetComponent<Interactable>(out interactableTarget))
+        {
+            
             interactableTarget.TargetOn();
         }
     }

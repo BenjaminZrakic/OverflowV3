@@ -165,52 +165,52 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.6389775
+      value: 4.087
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.2320004
+      value: -1.48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.9039955
+      value: 6.939
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: -0.08898902
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.021770122
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071069
+      value: 0.35014915
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071067
+      value: 0.9322031
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -40.462
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -7.773
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 193.775
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 819b1ae421fad6744af4da8eb43f106f,
         type: 3}
@@ -248,6 +248,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6485927220386400355}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 819b1ae421fad6744af4da8eb43f106f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7510140584788410850}
   m_SourcePrefab: {fileID: 100100000, guid: 819b1ae421fad6744af4da8eb43f106f, type: 3}
 --- !u!1 &6335899348116215024 stripped
 GameObject:
@@ -268,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableName: Book
-  interactionDistance: 3.74
+  interactionDistance: 5.25
   isInteractable: 1
   hasBeenActivated: 0
   text_height: 1
@@ -308,6 +312,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02193474, y: 0.020233236, z: 0.034902606}
   m_Center: {x: -0.0004656761, y: -0.00000011901402, z: -0.005667284}
+--- !u!54 &7510140584788410850
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6335899348116215024}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!4 &6676149184533941834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 819b1ae421fad6744af4da8eb43f106f,

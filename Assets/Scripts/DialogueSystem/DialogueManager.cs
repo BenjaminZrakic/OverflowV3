@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialogueBox;
     public GameObject gameInput;
     public GameObject interactor;
+    public GameObject player;
 
     InputAction interactAction;
 
@@ -34,7 +35,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue (Dialogue dialogue){
 
-        interactor.GetComponent<PlayerInput>().enabled = false;
+        player.GetComponent<PlayerInput>().enabled = false;
         gameInput.GetComponent<PlayerInput>().enabled = false;
 
         print("Starting conversation with "+dialogue.name);
@@ -85,7 +86,7 @@ public class DialogueManager : MonoBehaviour
     }
     void EndDialogue(){
         GetComponent<PlayerInput>().enabled = false;
-        interactor.GetComponent<PlayerInput>().enabled = true;
+        player.GetComponent<PlayerInput>().enabled = true;
         gameInput.GetComponent<PlayerInput>().enabled = true;
         dialogueAnimator.SetTrigger("close_dialogue");
         Debug.Log("End of conversation");
