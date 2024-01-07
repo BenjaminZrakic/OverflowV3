@@ -31,6 +31,7 @@ namespace StarterAssets
         public bool isDashing = false;
         public bool canDash = true;
         private Vector3 lastKnownTargetPosition;
+        public TrailRenderer trailRenderer;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -314,13 +315,16 @@ namespace StarterAssets
             Physics.IgnoreLayerCollision(3,7, true);
             canDash = false;
             isDashing = true;
+            trailRenderer.emitting = true;
             print("Dashing");
 
             yield return new WaitForSeconds(DashDuration);
 
             isDashing = false;
             Physics.IgnoreLayerCollision(3,7, false);
+            trailRenderer.emitting = false;
             print("Stopping dash");
+            
 
             yield return new WaitForSeconds(DashCooldown);
             canDash = true;
