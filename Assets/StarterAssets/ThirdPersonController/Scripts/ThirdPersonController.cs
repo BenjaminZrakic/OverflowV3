@@ -1,4 +1,6 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -20,6 +22,14 @@ namespace StarterAssets
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
+
+
+        [Header("Dashing")]
+        public float DashSpeed = 10.0f;
+        public float DashDuration = 0.1f;
+        public float DashCooldown = 0.1f;
+        public bool isDashing = false;
+        public bool canDash = true;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -159,6 +169,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            Dash();
         }
 
         private void LateUpdate()
@@ -278,6 +289,32 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
+
+        private void Dash(){
+            if(_input.dash && canDash){
+                _input.dash = false;
+                StartCoroutine(DashCoroutine());
+            }
+            else
+                _input.dash = false;
+        }
+
+        private IEnumerator DashCoroutine(){
+            Physics.IgnoreLayerCollision(3,7, true);
+            canDash = false;
+            isDashing = true;
+            print("Dashing");
+
+            yield return new WaitForSeconds(DashDuration);
+
+            isDashing = false;
+            Physics.IgnoreLayerCollision(3,7, false);
+            print("Stopping dash");
+
+            yield return new WaitForSeconds(DashCooldown);
+            canDash = true;
+        }
+
 
         private void JumpAndGravity()
         {
