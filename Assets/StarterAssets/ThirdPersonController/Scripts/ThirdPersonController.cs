@@ -25,11 +25,12 @@ namespace StarterAssets
 
 
         [Header("Dashing")]
-        public float DashSpeed = 10.0f;
+        public float DashSpeed = 20.0f;
         public float DashDuration = 0.1f;
         public float DashCooldown = 0.1f;
         public bool isDashing = false;
         public bool canDash = true;
+        private Vector3 lastKnownTargetPosition;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -224,6 +225,7 @@ namespace StarterAssets
 
         private void Move()
         {
+            
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -261,6 +263,7 @@ namespace StarterAssets
 
             // normalise input direction
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+            
 
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
@@ -275,13 +278,21 @@ namespace StarterAssets
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 
+            if (!isDashing){
+                Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+                lastKnownTargetPosition = targetDirection;
 
-            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
-            // move the player
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                // move the player
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                                new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            }
+            else
+            {
+                _controller.Move(lastKnownTargetPosition.normalized * (DashSpeed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
+            }
+            
             // update animator if using character
             if (_hasAnimator)
             {

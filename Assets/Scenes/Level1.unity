@@ -9059,7 +9059,7 @@ SphereCollider:
     m_Bits: 768
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 1279
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 1
@@ -14062,7 +14062,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 56.94
     OrthographicSize: 10
-    NearClipPlane: -0.5
+    NearClipPlane: -2
     FarClipPlane: 500
     Dutch: 0
     ModeOverride: 0
@@ -15412,9 +15412,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 5
   SprintSpeed: 10
-  DashSpeed: 10
-  DashDuration: 0.1
-  DashCooldown: 0.1
+  DashSpeed: 20
+  DashDuration: 0.2
+  DashCooldown: 0.5
   isDashing: 0
   canDash: 1
   RotationSmoothTime: 0.12
@@ -17528,7 +17528,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -0.5
+  near clip plane: -2
   far clip plane: 500
   field of view: 56.94
   orthographic: 1
