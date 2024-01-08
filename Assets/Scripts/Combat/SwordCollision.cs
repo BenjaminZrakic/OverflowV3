@@ -16,11 +16,15 @@ public class SwordCollision : MonoBehaviour
     int comboCounter;
     public float cooldownTime = 0.2f;
     public float spamProtection = 0.2f;
-    
+
+    private StaminaSystem staminaSystem;
+    public float staminaCost = 10f;
+
     private void Start() {
         interactAction = GetComponentInChildren<PlayerInput>().actions["Attack"];
         interactAction.performed += Attack;
         anim = GetComponent<Animator>();
+        staminaSystem = GetComponentInChildren<StaminaSystem>();
     }
 
     private void Update() {
@@ -43,7 +47,7 @@ public class SwordCollision : MonoBehaviour
     {   
         if (!context.performed) return;
 
-        if(Time.time - lastComboEnd > cooldownTime && comboCounter<combo.Count){
+        if(Time.time - lastComboEnd > cooldownTime && comboCounter<combo.Count && staminaSystem.CurrentStamina>0){
             CancelInvoke("EndCombo");
 
             if(Time.time - lastClickedTime >= spamProtection){
@@ -52,6 +56,7 @@ public class SwordCollision : MonoBehaviour
                 damageDealer.weaponDamage = combo[comboCounter].damage;
                 comboCounter++;
                 lastClickedTime = Time.time;
+                staminaSystem.AddToCurrentStamina(-staminaCost);
 
                 if (comboCounter >= combo.Count){
                     comboCounter = 0;

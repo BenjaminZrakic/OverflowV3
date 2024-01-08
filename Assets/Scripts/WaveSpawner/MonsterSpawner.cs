@@ -14,7 +14,7 @@ public class MonsterSpawner : MonoBehaviour
     }
 
     [SerializeField] WaveContent[] waves;
-    int currentWave;
+    public int currentWave;
     bool waveHasBeenSpawned = false;
     public float spawnRange = 10;
     public List<GameObject> currentMonsters;
@@ -43,7 +43,7 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    void SpawnWave(){
+    public void SpawnWave(){
         for(int i = 0; i < waves[currentWave].GetMonsterSpawnList().Length;i++){
             
             GameObject newSpawn = Instantiate(waves[currentWave].GetMonsterSpawnList()[i], FindSpawnLoc(), Quaternion.identity);

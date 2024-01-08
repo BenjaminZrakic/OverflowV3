@@ -14,16 +14,21 @@ public class HealthSystem : MonoBehaviour
     HealthSystemForDummies healthSystem;
     InputAction healAction;
     int healingAmount;
+
+    public int maxHealingCharges = 3;
     public int healingCharges = 3;
 
     public TMP_Text healingChargesLabel;
 
     public GameObject playerVisual;
+    public LevelManager levelManager;
     
     void Start()
     {
         animator = GetComponent<Animator>();
         healthSystem = GetComponent<HealthSystemForDummies>();
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
         healingAmount = ((int)healthSystem.MaximumHealth)/4;
         healAction = GetComponent<PlayerInput>().actions["Heal"];
         healAction.performed += Heal;
@@ -53,16 +58,26 @@ public class HealthSystem : MonoBehaviour
             print("Healing player");
             healthSystem.AddToCurrentHealth(healingAmount);
             healingCharges--;
-            healingChargesLabel.text = healingCharges.ToString();
+            UpdateHealingChargesLabel();
         }
         else{
             print("No healing charges left");
         }
         
     }
+
+    public void UpdateHealingChargesLabel(){
+        healingChargesLabel.text = healingCharges.ToString();
+    }
  
-    public void Die()
+    public void Die(bool isAlive)
     {
+        if(!isAlive){
+            transform.position = levelManager.spawnLocation;
+            healthSystem.AddToCurrentHealth(healthSystem.MaximumHealth);
+        }
+        
+       
         //Instantiate(ragdoll, transform.position, transform.rotation);
         //Destroy(this.gameObject);
     }

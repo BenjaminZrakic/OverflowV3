@@ -9,10 +9,13 @@ public class EnemyDamageDealer : MonoBehaviour
  
     [SerializeField] float weaponLength;
     [SerializeField] float weaponDamage;
+
+    BoxCollider boxCollider;
     void Start()
     {
         canDealDamage = false;
         hasDealtDamage = false;
+        boxCollider = GetComponent<BoxCollider>();
     }
  
     // Update is called once per frame
@@ -20,6 +23,8 @@ public class EnemyDamageDealer : MonoBehaviour
     {
         if (canDealDamage && !hasDealtDamage)
         {
+            
+            /*
             RaycastHit hit;
  
             int layerMask = 1 << 3;
@@ -33,17 +38,34 @@ public class EnemyDamageDealer : MonoBehaviour
                     health.HitVFX(hit.point);
                     hasDealtDamage = true;
                 }
-            }
+            }*/
+
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (canDealDamage && !hasDealtDamage)
+        {
+            if (other.TryGetComponent(out HealthSystem health))
+                {
+                    print("Hitting player");
+                    health.TakeDamage(weaponDamage);
+                    health.HitVFX(other.gameObject.transform.position);
+                    hasDealtDamage = true;
+                }
+        }
+    }
+
     public void StartDealDamage()
     {
         Debug.Log("Enemy dealing damage");
+        boxCollider.enabled = true;
         canDealDamage = true;
         hasDealtDamage = false;
     }
     public void EndDealDamage()
     {
+        boxCollider.enabled = false;
         canDealDamage = false;
     }
  

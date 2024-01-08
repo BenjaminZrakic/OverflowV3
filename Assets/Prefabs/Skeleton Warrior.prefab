@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8657121615942251362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3690551982756335301}
+  - component: {fileID: 570573225485963998}
+  - component: {fileID: 2447203925263709468}
+  m_Layer: 7
+  m_Name: AttackCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3690551982756335301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657121615942251362}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.002, z: 0.808}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2892278913375597126}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &570573225485963998
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657121615942251362}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2447203925263709468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657121615942251362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b23c982c6d3f924f8c118bb0e016253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponLength: 0
+  weaponDamage: 100
 --- !u!1001 &2917577043408499331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10,8 +78,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2911944797095351610, guid: 57856ebf3c04da543a699e6798915229,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911944797095351610, guid: 57856ebf3c04da543a699e6798915229,
+        type: 3}
       propertyPath: weaponDamage
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794935162681778561, guid: 57856ebf3c04da543a699e6798915229,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8669172168144208901, guid: 57856ebf3c04da543a699e6798915229,
         type: 3}
@@ -2369,6 +2447,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3381000118096206261}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0c18218feab30a94397c5230415876c3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3690551982756335301}
     - targetCorrespondingSourceObject: {fileID: 8832167578455526177, guid: 0c18218feab30a94397c5230415876c3,
         type: 3}
       insertIndex: -1

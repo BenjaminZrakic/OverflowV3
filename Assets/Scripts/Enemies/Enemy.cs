@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public bool isWaveSpawn = false;
     public MonsterSpawner monsterSpawner;
+
+    bool isAttacking = false;
  
     void Start()
     {
@@ -47,16 +49,23 @@ public class Enemy : MonoBehaviour
         {
             if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
             {
+                isAttacking = true;
                 animator.SetTrigger("attack");
                 timePassed = 0;
+                
+            }
+            else{
+                isAttacking = false;
             }
         }
+
         timePassed += Time.deltaTime;
  
         if (newDestinationCD <= 0 && Vector3.Distance(player.transform.position, transform.position) <= aggroRange)
         {
             newDestinationCD = 0.5f;
-            agent.SetDestination(player.transform.position);
+            if(!isAttacking)
+                agent.SetDestination(player.transform.position);
         }
         newDestinationCD -= Time.deltaTime;
 
@@ -81,7 +90,8 @@ public class Enemy : MonoBehaviour
  
     public void Die()
     {
-        Instantiate(ragdoll, transform.position,transform.rotation);
+        if (ragdoll != null)
+            Instantiate(ragdoll, transform.position,transform.rotation);
         
         if(isWaveSpawn){
             monsterSpawner.currentMonsters.Remove(this.gameObject);
@@ -94,16 +104,6 @@ public class Enemy : MonoBehaviour
  
     public void TakeDamage(float damageAmount)
     {
-        /*
-        health -= damageAmount;
-        animator.SetTrigger("damage");
-        CameraShake.Instance.ShakeCamera(2f, 0.2f);
- 
-        if (health <= 0)
-        {
-            Die();
-        }*/
-        
         // Damage enemy for damageAmount
         healthSystem.AddToCurrentHealth(-damageAmount);
     }
@@ -118,8 +118,11 @@ public class Enemy : MonoBehaviour
  
     public void HitVFX(Vector3 hitPosition)
     {
-        GameObject hit = Instantiate(hitVFX, hitPosition, Quaternion.identity);
-        Destroy(hit, 3f);
+        if (hitVFX != null){
+            GameObject hit = Instantiate(hitVFX, hitPosition, Quaternion.identity);
+            Destroy(hit, 3f);
+        }
+        
     }
  
     private void OnDrawGizmos()

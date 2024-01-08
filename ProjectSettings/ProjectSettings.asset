@@ -804,6 +804,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Standalone: PAUSE_MANAGER_INPUT_SYSTEM
+    WebGL: PAUSE_MANAGER_INPUT_SYSTEM
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

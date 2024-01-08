@@ -33,6 +33,12 @@ namespace StarterAssets
         private Vector3 lastKnownTargetPosition;
         public TrailRenderer trailRenderer;
 
+
+        [Header("Stamina")]
+        public float sprintCost = 1f;
+        public float dashCost = 10f;
+        private StaminaSystem staminaSystem;
+
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
         public float RotationSmoothTime = 0.12f;
@@ -157,6 +163,8 @@ namespace StarterAssets
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
+            staminaSystem = GetComponent<StaminaSystem>();
+
             AssignAnimationIDs();
 
             // reset our timeouts on start
@@ -279,19 +287,22 @@ namespace StarterAssets
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 
-            if (!isDashing){
+            if (!isDashing)
+            {
                 Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
                 lastKnownTargetPosition = targetDirection;
 
                 // move the player
                 _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                                 new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+                if (_input.sprint ){
+                    staminaSystem.AddToCurrentStamina(-sprintCost);
+                }
             }
             else
             {
                 _controller.Move(lastKnownTargetPosition.normalized * (DashSpeed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-
             }
             
             // update animator if using character
@@ -317,6 +328,7 @@ namespace StarterAssets
             isDashing = true;
             trailRenderer.emitting = true;
             print("Dashing");
+            staminaSystem.AddToCurrentStamina(-dashCost);
 
             yield return new WaitForSeconds(DashDuration);
 
