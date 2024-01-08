@@ -230,6 +230,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.24210262, y: 4.75653, z: 1.2475078}
   m_Center: {x: 0.27242237, y: 1.8782643, z: -0.2729891}
+--- !u!1 &12627153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 752794497862099986, guid: 66507081774513e49abeaf68646e5fed,
+    type: 3}
+  m_PrefabInstance: {fileID: 9110967155050349138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &12627157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12627153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2e8c543466ee44db8e684dd53d1de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponLength: 0
+  weaponDamage: 100
 --- !u!1 &13539170
 GameObject:
   m_ObjectHideFlags: 0
@@ -4556,21 +4576,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4549408043873798751, guid: 586b942da84248c4883fe079e3302a7a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.02189775
-      objectReference: {fileID: 0}
-    - target: {fileID: 4549408043873798751, guid: 586b942da84248c4883fe079e3302a7a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.02189775
-      objectReference: {fileID: 0}
-    - target: {fileID: 4549408043873798751, guid: 586b942da84248c4883fe079e3302a7a,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.021897756
       objectReference: {fileID: 0}
     - target: {fileID: 5775747827437097297, guid: 586b942da84248c4883fe079e3302a7a,
         type: 3}
@@ -11815,6 +11820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4861197384827927428, guid: 1219b962a09bf08449b03c3b7e455e5c,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4861197384827927428, guid: 1219b962a09bf08449b03c3b7e455e5c,
+        type: 3}
       propertyPath: m_IncludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
@@ -15084,15 +15094,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3674172262832254427, guid: 66507081774513e49abeaf68646e5fed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7305569819499311334, guid: 66507081774513e49abeaf68646e5fed,
         type: 3}
       propertyPath: m_Name
       value: Explody Ghost
       objectReference: {fileID: 0}
+    - target: {fileID: 7402361666203386675, guid: 66507081774513e49abeaf68646e5fed,
+        type: 3}
+      propertyPath: weaponDamage
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 752794497862099986, guid: 66507081774513e49abeaf68646e5fed,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 12627157}
   m_SourcePrefab: {fileID: 100100000, guid: 66507081774513e49abeaf68646e5fed, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

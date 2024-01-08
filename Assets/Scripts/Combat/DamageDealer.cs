@@ -8,10 +8,13 @@ public class DamageDealer : MonoBehaviour
  
     [SerializeField] float weaponLength;
     [SerializeField] public float weaponDamage;
+
+    Collider attackCollider;
     void Start()
     {
         canDealDamage = false;
         hasDealtDamage = new List<GameObject>();
+        attackCollider = GetComponent<Collider>();
     }
  
     void Update()
@@ -40,27 +43,25 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         print("Hit enemy");
-        if (canDealDamage)
-        {
             
-            if(other.gameObject.TryGetComponent(out Enemy enemy) && !hasDealtDamage.Contains(other.gameObject)){
-                enemy.TakeDamage(weaponDamage);
-                hasDealtDamage.Add(other.gameObject);
-            }
-            
+        if(other.gameObject.TryGetComponent(out Enemy enemy) && !hasDealtDamage.Contains(other.gameObject)){
+            enemy.TakeDamage(weaponDamage);
+            hasDealtDamage.Add(other.gameObject);
         }
+        
+        
     }
 
     public void StartDealDamage()
     {
         Debug.Log("Player can deal damage");
-        canDealDamage = true;
+        attackCollider.enabled = true;
         hasDealtDamage.Clear();
     }
     public void EndDealDamage()
     {
         Debug.Log("Player cant deal damage");
-        canDealDamage = false;
+        attackCollider.enabled = false;
     }
  
     private void OnDrawGizmos()
