@@ -10,12 +10,12 @@ public class EnemyDamageDealer : MonoBehaviour
     [SerializeField] float weaponLength;
     [SerializeField] float weaponDamage;
 
-    BoxCollider boxCollider;
+    Collider attackCollider;
     void Start()
     {
         canDealDamage = false;
         hasDealtDamage = false;
-        boxCollider = GetComponent<BoxCollider>();
+        attackCollider = GetComponent<Collider>();
     }
  
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class EnemyDamageDealer : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (canDealDamage && !hasDealtDamage)
+        if (!hasDealtDamage)
         {
             if (other.TryGetComponent(out HealthSystem health))
                 {
@@ -59,14 +59,12 @@ public class EnemyDamageDealer : MonoBehaviour
     public void StartDealDamage()
     {
         Debug.Log("Enemy dealing damage");
-        boxCollider.enabled = true;
-        canDealDamage = true;
+        attackCollider.enabled = true;
         hasDealtDamage = false;
     }
     public void EndDealDamage()
     {
-        boxCollider.enabled = false;
-        canDealDamage = false;
+        attackCollider.enabled = false;
     }
  
     private void OnDrawGizmos()
