@@ -18,6 +18,9 @@ public class HealthSystem : MonoBehaviour
     public int maxHealingCharges = 3;
     public int healingCharges = 3;
 
+    public float cameraShakeIntensity = 0.5f;
+    public float cameraShakeDuration = 0.2f;
+
     public TMP_Text healingChargesLabel;
 
     public GameObject playerVisual;
@@ -40,15 +43,7 @@ public class HealthSystem : MonoBehaviour
  
     public void TakeDamage(float damageAmount)
     {
-        /*health -= damageAmount;
-        Debug.Log("Player took damage, health: "+health);
-        //animator.SetTrigger("damage");
-        CameraShake.Instance.ShakeCamera(2f, 0.2f);
- 
-        if (health <= 0)
-        {
-            Die();
-        }*/
+        CameraShake.Instance.ShakeCamera(cameraShakeIntensity, cameraShakeDuration);
         healthSystem.AddToCurrentHealth(-damageAmount);
 
     }
