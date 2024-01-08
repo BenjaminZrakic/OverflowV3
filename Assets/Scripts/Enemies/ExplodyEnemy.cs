@@ -3,44 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
  
-public class ExplodyEnemy : MonoBehaviour
+public class ExplodyEnemy : Enemy
 {
-    [SerializeField] float health = 3;
-    [SerializeField] GameObject hitVFX;
-    [SerializeField] GameObject ragdoll;
-
     public GameObject explosion;
     public GameObject explosionSpawnLocation;
  
-    [Header("Combat")]
-    [SerializeField] float attackCD = 3f;
-    [SerializeField] float attackRange = 1f;
-    [SerializeField] float aggroRange = 4f;
- 
-    GameObject player;
-    NavMeshAgent agent;
-    Animator animator;
-    HealthSystemForDummies healthSystem;
-    float timePassed;
-    float newDestinationCD = 0.5f;
-
-    [HideInInspector]
-    public bool isWaveSpawn = false;
-    public MonsterSpawner monsterSpawner;
-
-    bool isAttacking = false;
- 
-    void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        healthSystem = GetComponent<HealthSystemForDummies>();
-
-    }
- 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         animator.SetFloat("speed", agent.velocity.magnitude / agent.speed);
  
@@ -82,16 +51,8 @@ public class ExplodyEnemy : MonoBehaviour
         transform.forward = direction;
     }
  
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            print(true);
-            player = collision.gameObject;
-        }
-    }
  
-    public void Die()
+    public override void Die()
     {
         if (ragdoll != null)
             Instantiate(ragdoll, transform.position,transform.rotation);
@@ -107,43 +68,5 @@ public class ExplodyEnemy : MonoBehaviour
 
     }
  
-    public void TakeDamage(float damageAmount)
-    {
-        // Damage enemy for damageAmount
-        healthSystem.AddToCurrentHealth(-damageAmount);
-    }
-    public void StartDealDamage()
-    {
-        GetComponentInChildren<EnemyDamageDealer>().StartDealDamage();
-    }
-    public void EndDealDamage()
-    {
-        GetComponentInChildren<EnemyDamageDealer>().EndDealDamage();
-    }
- 
-    public void HitVFX(Vector3 hitPosition)
-    {
-        if (hitVFX != null){
-            GameObject hit = Instantiate(hitVFX, hitPosition, Quaternion.identity);
-            Destroy(hit, 3f);
-        }
-        
-    }
- 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, aggroRange);
-    }
-
-    public void OnIsAliveChanged(bool value)
-    {
-        if (value == false){
-            Die();
-        }
-        
-    }
 
 }

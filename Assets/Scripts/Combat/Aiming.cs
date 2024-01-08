@@ -42,11 +42,15 @@ public class Aiming : MonoBehaviour
 
         private void Aim()
         {
-            var (success, position) = GetMousePosition();
-            if (success)
+
+            float distance;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (plane.Raycast(ray, out distance))
             {
+                worldPosition = ray.GetPoint(distance);
+            }
                 // Calculate the direction
-                var direction = position - transform.position;
+                var direction = worldPosition - transform.position;
 
                 // You might want to delete this line.
                 // Ignore the height difference.
@@ -54,39 +58,9 @@ public class Aiming : MonoBehaviour
 
                 // Make the transform look in the direction.
                 swordPivot.transform.forward = direction;
-            }
+            
         }
 
-        private (bool success, Vector3 position) GetMousePosition()
-        {
-            
-            
-            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
-            {
-                // The Raycast hit something, return with the position.
-                return (success: true, position: hitInfo.point);
-            }
-            else
-            {
-                // The Raycast did not hit anything.
-                return (success: false, position: Vector3.zero);
-            }
-            /*
-            float distance;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (plane.Raycast(ray, out distance))
-            {
-                worldPosition = ray.GetPoint(distance);
-                return(success: true, position: worldPosition);
-            }
-            else
-            {
-                // The Raycast did not hit anything.
-                return (success: false, position: Vector3.zero);
-            }*/
-        }
 
         private void OnDrawGizmos()
         {
@@ -113,20 +87,6 @@ public class Aiming : MonoBehaviour
                 Gizmos.DrawWireSphere(hitGroundHeight, 0.5f);
                 Gizmos.DrawLine(hitGroundHeight, hitPosition);
             
-
-            /*
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(hitInfo.point, 0.5f);
-                Gizmos.DrawLine(aimedTransform.position, hitPosition);
-                
-    	        
-                if (gizmo_ignoredHeightTarget)
-                {
-                    Gizmos.color = Color.cyan;
-                    Gizmos.DrawWireSphere(hitPositionIngoredHeight, 0.5f);
-                    Gizmos.DrawLine(aimedTransform.position, hitPositionIngoredHeight);
-                }
-                */
             }
         }
 

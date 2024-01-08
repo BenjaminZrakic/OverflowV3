@@ -5,27 +5,28 @@ using UnityEngine.AI;
  
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float health = 3;
-    [SerializeField] GameObject hitVFX;
-    [SerializeField] GameObject ragdoll;
+    [SerializeField] protected GameObject hitVFX;
+    [SerializeField] protected GameObject ragdoll;
  
     [Header("Combat")]
-    [SerializeField] float attackCD = 3f;
-    [SerializeField] float attackRange = 1f;
-    [SerializeField] float aggroRange = 4f;
+    [SerializeField] protected float attackCD = 3f;
+    [SerializeField] protected float attackRange = 1f;
+    [SerializeField] protected float aggroRange = 4f;
  
-    GameObject player;
-    NavMeshAgent agent;
-    Animator animator;
-    HealthSystemForDummies healthSystem;
-    float timePassed;
-    float newDestinationCD = 0.5f;
+    protected GameObject player;
+    protected NavMeshAgent agent;
+    protected Animator animator;
+    protected HealthSystemForDummies healthSystem;
+    protected float timePassed;
+    protected float newDestinationCD = 0.5f;
 
     [HideInInspector]
     public bool isWaveSpawn = false;
     public MonsterSpawner monsterSpawner;
 
-    bool isAttacking = false;
+    protected bool isAttacking = false;
+
+    protected Vector3 direction;
  
     void Start()
     {
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour
     }
  
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         animator.SetFloat("speed", agent.velocity.magnitude / agent.speed);
  
@@ -69,7 +70,7 @@ public class Enemy : MonoBehaviour
         }
         newDestinationCD -= Time.deltaTime;
 
-        var direction = player.transform.position - transform.position;
+        direction = player.transform.position - transform.position;
 
         // You might want to delete this line.
         // Ignore the height difference.
@@ -88,7 +89,7 @@ public class Enemy : MonoBehaviour
         }
     }
  
-    public void Die()
+    public virtual void Die()
     {
         if (ragdoll != null)
             Instantiate(ragdoll, transform.position,transform.rotation);
@@ -131,14 +132,6 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, aggroRange);
-    }
-
-    public void OnIsAliveChanged(bool value)
-    {
-        if (value == false){
-            Die();
-        }
-        
     }
 
 }

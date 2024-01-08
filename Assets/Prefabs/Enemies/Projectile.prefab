@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1920419268396722447}
   - component: {fileID: 1355513209220193447}
   - component: {fileID: 6123769040837043902}
-  m_Layer: 11
+  m_Layer: 7
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.072, y: -2.254, z: 4.688}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
