@@ -51,7 +51,7 @@ public class SwordCollision : MonoBehaviour
             CancelInvoke("EndCombo");
 
             if(anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack")){
-                if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f){
+                if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f){
                     anim.runtimeAnimatorController = combo[comboCounter].animatorOv;
                     anim.Play("Attack",0,0);
                     damageDealer.weaponDamage = combo[comboCounter].damage;
