@@ -14,14 +14,15 @@ public class StaminaBar : MonoBehaviour
 
     // Caches
     StaminaSystem StaminaSystem;
-    Image image;
+    public Image image_above;
+    public Image image;
     Text text;
     FollowCameraRotation followCameraRotation;
 
     private void Start()
     {
         StaminaSystem = GetComponentInParent<StaminaSystem>();
-        image = GetComponentInChildren<Image>();
+        //image = GetComponentInChildren<Image>();
         text = GetComponentInChildren<Text>();
         followCameraRotation = GetComponent<FollowCameraRotation>();
         StaminaSystem.OnCurrentStaminaChanged.AddListener(ChangeStaminaFill);
@@ -46,7 +47,8 @@ public class StaminaBar : MonoBehaviour
     private void ChangeStaminaFill(CurrentStamina currentStamina)
     {
         if (!StaminaSystem.HasAnimationWhenStaminaChanges) return;
-
+        if(currentStamina.previous > currentStamina.current)
+            image_above.fillAmount = currentStamina.percentage / 100;
         StopAllCoroutines();
         StartCoroutine(ChangeFillAmount(currentStamina));
     }
@@ -63,12 +65,15 @@ public class StaminaBar : MonoBehaviour
         {
             float leftoverAmount = Mathf.Lerp((currentStamina.previous / StaminaSystem.MaximumStamina) + cacheLeftoverAmount, finalValue, timeElapsed / animationSpeed);
             this.leftoverAmount = leftoverAmount - finalValue;
+            if(currentStamina.previous <= currentStamina.current)
+                image_above.fillAmount = leftoverAmount;
             image.fillAmount = leftoverAmount;
             timeElapsed += Time.deltaTime;
             yield return null;
         }
 
         this.leftoverAmount = 0;
+        image_above.fillAmount = finalValue;
         image.fillAmount = finalValue;
     }
 }
