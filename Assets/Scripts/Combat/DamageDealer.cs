@@ -15,7 +15,7 @@ public class DamageDealer : MonoBehaviour
     }
  
     void Update()
-    {
+    {/*
         if (canDealDamage)
         {
             RaycastHit hit;
@@ -34,7 +34,7 @@ public class DamageDealer : MonoBehaviour
                     hasDealtDamage.Add(hit.transform.gameObject);
                 }
             }
-        }
+        }*/
     }
 
 

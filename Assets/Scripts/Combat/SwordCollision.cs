@@ -50,7 +50,21 @@ public class SwordCollision : MonoBehaviour
         if(Time.time - lastComboEnd > cooldownTime && comboCounter<combo.Count && staminaSystem.CurrentStamina>0){
             CancelInvoke("EndCombo");
 
-            if(Time.time - lastClickedTime >= spamProtection){
+            if(anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack")){
+                if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f){
+                    anim.runtimeAnimatorController = combo[comboCounter].animatorOv;
+                    anim.Play("Attack",0,0);
+                    damageDealer.weaponDamage = combo[comboCounter].damage;
+                    comboCounter++;
+                    lastClickedTime = Time.time;
+                    staminaSystem.AddToCurrentStamina(-staminaCost);
+
+                    if (comboCounter >= combo.Count){
+                        EndCombo();
+                    }
+                }
+            }
+            else{
                 anim.runtimeAnimatorController = combo[comboCounter].animatorOv;
                 anim.Play("Attack",0,0);
                 damageDealer.weaponDamage = combo[comboCounter].damage;
@@ -62,6 +76,18 @@ public class SwordCollision : MonoBehaviour
                     EndCombo();
                 }
             }
+            /*if(Time.time - lastClickedTime >= spamProtection){
+                anim.runtimeAnimatorController = combo[comboCounter].animatorOv;
+                anim.Play("Attack",0,0);
+                damageDealer.weaponDamage = combo[comboCounter].damage;
+                comboCounter++;
+                lastClickedTime = Time.time;
+                staminaSystem.AddToCurrentStamina(-staminaCost);
+
+                if (comboCounter >= combo.Count){
+                    EndCombo();
+                }
+           }*/
         }
         
     }
