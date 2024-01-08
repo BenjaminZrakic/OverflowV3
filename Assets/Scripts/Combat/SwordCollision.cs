@@ -59,7 +59,7 @@ public class SwordCollision : MonoBehaviour
                 staminaSystem.AddToCurrentStamina(-staminaCost);
 
                 if (comboCounter >= combo.Count){
-                    comboCounter = 0;
+                    EndCombo();
                 }
             }
         }
@@ -68,7 +68,7 @@ public class SwordCollision : MonoBehaviour
 
     void ExitAttack(){
         if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f && anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack")){
-            Invoke("EndCombo",1);
+            Invoke("EndCombo",0.8f);
         }
     }
 

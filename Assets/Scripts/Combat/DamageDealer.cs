@@ -37,18 +37,19 @@ public class DamageDealer : MonoBehaviour
         }
     }
 
-/*
+
     private void OnTriggerEnter(Collider other) {
+        print("Hit enemy");
         if (canDealDamage)
         {
-            print("Hit enemy");
-            if(other.TryGetComponent(out Enemy enemy) && !hasDealtDamage.Contains(other.gameObject)){
+            
+            if(other.gameObject.TryGetComponent(out Enemy enemy) && !hasDealtDamage.Contains(other.gameObject)){
                 enemy.TakeDamage(weaponDamage);
                 hasDealtDamage.Add(other.gameObject);
             }
             
         }
-    }*/
+    }
 
     public void StartDealDamage()
     {

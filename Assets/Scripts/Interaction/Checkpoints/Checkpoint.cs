@@ -9,7 +9,7 @@ public class Checkpoint : Interactable
     public GameObject player;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         base.Start();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
@@ -23,6 +23,8 @@ public class Checkpoint : Interactable
         var healthSystem = player.GetComponent<HealthSystem>();
         healthSystem.healingCharges = healthSystem.maxHealingCharges;
         healthSystem.UpdateHealingChargesLabel();
+        var healthSystem2 = player.GetComponent<HealthSystemForDummies>();
+        healthSystem2.AddToCurrentHealth(healthSystem2.MaximumHealth);
 
         levelManager.spawnLocation = spawnLocation.transform.position;
     }

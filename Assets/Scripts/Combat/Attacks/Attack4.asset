@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Attack4
   m_EditorClassIdentifier: 
   animatorOv: {fileID: 22100000, guid: bd84a528bdf0f1d42b798ba4f65e53a1, type: 2}
-  damage: 100
+  damage: 50
