@@ -12245,8 +12245,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 458582679}
   - {fileID: 3727455608236481056}
+  - {fileID: 458582679}
   - {fileID: 1993442407}
   - {fileID: 802706769}
   m_Father: {fileID: 355941873}
@@ -13014,6 +13014,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 8.221316
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856493123114001529, guid: 1219b962a09bf08449b03c3b7e455e5c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2412946042426317103, guid: 1219b962a09bf08449b03c3b7e455e5c,
         type: 3}
@@ -16847,7 +16852,9 @@ MonoBehaviour:
   aggroRange: 20
   isWaveSpawn: 0
   monsterSpawner: {fileID: 0}
+  isAttacking: 0
   phaseTwo: 0
+  phaseThree: 0
   spinning: 0
   attackAnimator: {fileID: 1908821984}
   rotationSpeed: 3
@@ -16900,8 +16907,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1908821985}
         m_TargetAssemblyTypeName: BossAttackLogic, Assembly-CSharp
-        m_MethodName: StartPhaseTwo
-        m_Mode: 1
+        m_MethodName: ChangePhase
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16934,8 +16941,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.0532832, y: 4.306263, z: 5.334132}
-  m_Center: {x: -0.010212915, y: 2.415636, z: 3.0307202}
+  m_Size: {x: 1.436953, y: 4.306263, z: 4.9295077}
+  m_Center: {x: 0.0037683728, y: 2.415636, z: 2.8284214}
 --- !u!1001 &8184742058996125297
 PrefabInstance:
   m_ObjectHideFlags: 0

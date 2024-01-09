@@ -6,6 +6,7 @@ public class BossAttackLogic : MonoBehaviour
 {
     public Boss boss;
     public GameObject waveSpawner;
+    
 
     public void StopSpinning(){
         print("Stopping spinning");
@@ -14,21 +15,38 @@ public class BossAttackLogic : MonoBehaviour
     }
 
 
-    public void StartPhaseTwo(){
-        boss.gameObject.SetActive(false);
-        waveSpawner.SetActive(true);
+    public void ChangePhase(bool isAlive){
+        if (!boss.phaseTwo){
+            boss.isAttacking = false;
+            boss.gameObject.SetActive(false);
+            waveSpawner.SetActive(true);
+            Debug.Log(waveSpawner.activeSelf);
+            Debug.Log(boss.gameObject.activeSelf);
+
+            boss.phaseTwo = true;
+        }
+
+        else if(boss.phaseThree && !isAlive){
+            Destroy(boss.gameObject);
+        }
+
     }
 
     public void StartPhaseThree(){
         print("Starting phase three");
-        boss.gameObject.transform.position = boss.spawnPoint;
         waveSpawner.SetActive(false);
+        boss.gameObject.GetComponent<Animator>().Play("Chase");
+        boss.gameObject.transform.position = boss.spawnPoint;
         boss.gameObject.SetActive(true);
+
+
         Debug.Log(waveSpawner.activeSelf);
         Debug.Log(boss.gameObject.activeSelf);
         
         
         HealthSystemForDummies bossHealth = boss.gameObject.GetComponent<HealthSystemForDummies>();
-        bossHealth.AddToCurrentHealth(bossHealth.MaximumHealth);
+        bossHealth.ReviveWithMaximumHealth();
+
+        boss.phaseThree = true;
     }
 }

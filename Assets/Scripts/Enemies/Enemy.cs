@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     public bool isWaveSpawn = false;
     public MonsterSpawner monsterSpawner;
 
-    protected bool isAttacking = false;
+    public bool isAttacking = false;
 
     protected Vector3 direction;
  

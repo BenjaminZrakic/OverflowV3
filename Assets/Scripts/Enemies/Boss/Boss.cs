@@ -6,6 +6,7 @@ public class Boss : Enemy
 {
 
     public bool phaseTwo = false;
+    public bool phaseThree = false;
     public bool spinning = false;
     public Animator attackAnimator;
 
