@@ -9,9 +9,9 @@ public class ExplodyEnemy : Enemy
     public GameObject explosionSpawnLocation;
  
     // Update is called once per frame
-    protected override void Update()
+    public override void Update()
     {
-        animator.SetFloat("speed", agent.velocity.magnitude / agent.speed);
+        //animator.SetFloat("speed", agent.velocity.magnitude / agent.speed);
  
         if (player == null)
         {

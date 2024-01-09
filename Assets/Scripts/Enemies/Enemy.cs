@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
 
     protected Vector3 direction;
  
-    void Start()
+    public virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     }
  
     // Update is called once per frame
-    protected virtual void Update()
+    public virtual void Update()
     {
         animator.SetFloat("speed", agent.velocity.magnitude / agent.speed);
  
