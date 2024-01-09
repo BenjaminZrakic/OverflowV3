@@ -13,14 +13,17 @@ public class HealthBar : MonoBehaviour
     float leftoverAmount = 0f;
 
     // Caches
-    HealthSystemForDummies healthSystem;
+    public HealthSystemForDummies healthSystem;
     Image image;
     Text text;
     FollowCameraRotation followCameraRotation;
 
+
+
     private void Start()
     {
-        healthSystem = GetComponentInParent<HealthSystemForDummies>();
+        if (healthSystem == null)
+            healthSystem = GetComponentInParent<HealthSystemForDummies>();
         image = GetComponentInChildren<Image>();
         text = GetComponentInChildren<Text>();
         followCameraRotation = GetComponent<FollowCameraRotation>();

@@ -42,7 +42,7 @@ public class DamageDealer : MonoBehaviour
 
 
     private void OnTriggerEnter(Collider other) {
-        print("Hit enemy");
+        //print("Hit enemy");
             
         if(other.gameObject.TryGetComponent(out Enemy enemy) && !hasDealtDamage.Contains(other.gameObject)){
             enemy.TakeDamage(weaponDamage);
@@ -54,13 +54,13 @@ public class DamageDealer : MonoBehaviour
 
     public void StartDealDamage()
     {
-        Debug.Log("Player can deal damage");
+        //Debug.Log("Player can deal damage");
         attackCollider.enabled = true;
         hasDealtDamage.Clear();
     }
     public void EndDealDamage()
     {
-        Debug.Log("Player cant deal damage");
+        //Debug.Log("Player cant deal damage");
         attackCollider.enabled = false;
     }
  

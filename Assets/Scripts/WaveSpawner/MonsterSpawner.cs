@@ -21,6 +21,8 @@ public class MonsterSpawner : MonoBehaviour
 
     public GameObject SpawnAfterWavesObject;
 
+    public bool bossMonsterSpawner = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,12 @@ public class MonsterSpawner : MonoBehaviour
             if (currentWave < waves.Length)
                 SpawnWave();
             else{
-                if (SpawnAfterWavesObject != null)
+                if(bossMonsterSpawner){
+                    print("Supposedly starting phase three");
+                    GetComponentInParent<BossAttackLogic>().StartPhaseThree();
+                    
+                }
+                else if (SpawnAfterWavesObject != null)
                     SpawnAfterWavesObject.SetActive(true);
             }
         }

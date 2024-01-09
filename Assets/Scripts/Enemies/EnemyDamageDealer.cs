@@ -48,7 +48,7 @@ public class EnemyDamageDealer : MonoBehaviour
         {
             if (other.TryGetComponent(out HealthSystem health))
                 {
-                    print("Hitting player");
+                    //print("Hitting player");
                     health.TakeDamage(weaponDamage);
                     health.HitVFX(other.gameObject.transform.position);
                     hasDealtDamage = true;
@@ -58,7 +58,7 @@ public class EnemyDamageDealer : MonoBehaviour
 
     public void StartDealDamage()
     {
-        Debug.Log("Enemy dealing damage");
+        //Debug.Log("Enemy dealing damage");
         attackCollider.enabled = true;
         hasDealtDamage = false;
     }

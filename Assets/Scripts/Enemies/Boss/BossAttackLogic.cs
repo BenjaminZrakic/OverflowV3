@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class BossAttackLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public Boss boss;
+    public GameObject waveSpawner;
+
+    public void StopSpinning(){
+        print("Stopping spinning");
+        boss.spinning = false;
+        print(boss.spinning);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+
+    public void StartPhaseTwo(){
+        boss.gameObject.SetActive(false);
+        waveSpawner.SetActive(true);
+    }
+
+    public void StartPhaseThree(){
+        print("Starting phase three");
+        boss.gameObject.transform.position = boss.spawnPoint;
+        waveSpawner.SetActive(false);
+        boss.gameObject.SetActive(true);
+        Debug.Log(waveSpawner.activeSelf);
+        Debug.Log(boss.gameObject.activeSelf);
         
+        
+        HealthSystemForDummies bossHealth = boss.gameObject.GetComponent<HealthSystemForDummies>();
+        bossHealth.AddToCurrentHealth(bossHealth.MaximumHealth);
     }
 }
