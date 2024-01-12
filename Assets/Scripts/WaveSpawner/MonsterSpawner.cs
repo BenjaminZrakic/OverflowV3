@@ -40,8 +40,10 @@ public class MonsterSpawner : MonoBehaviour
                 SpawnWave();
             else{
                 if(bossMonsterSpawner){
-                    print("Supposedly starting phase three");
-                    GetComponentInParent<BossAttackLogic>().StartPhaseThree();
+                    bossMonsterSpawner = false;
+                    print("Supposedly starting next phase");
+                    GetComponentInParent<BossAttackLogic>().ChangePhase(true);
+                    
                     
                 }
                 else if (SpawnAfterWavesObject != null)

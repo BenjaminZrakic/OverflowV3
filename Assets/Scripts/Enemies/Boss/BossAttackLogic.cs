@@ -5,8 +5,23 @@ using UnityEngine;
 public class BossAttackLogic : MonoBehaviour
 {
     public Boss boss;
-    public GameObject waveSpawner;
-    
+
+    public Collider bossCollider;
+
+    public GameObject normalBossModel;
+    public GameObject transparentBossModel;
+    public GameObject swingySword;
+    public GameObject waveSpawnerPhaseTwo;
+    public GameObject waveSpawnerPhaseThree;
+    public GameObject waveSpawnerPhaseFour;
+
+    public GameObject spinnyBois;
+
+    public bool phaseTwo = false;
+    public bool phaseThree = false;
+    public bool phaseFour = false;
+
+    bool changingPhases = false;
 
     public void StopSpinning(){
         print("Stopping spinning");
@@ -16,37 +31,70 @@ public class BossAttackLogic : MonoBehaviour
 
 
     public void ChangePhase(bool isAlive){
-        if (!boss.phaseTwo){
-            boss.isAttacking = false;
-            boss.gameObject.SetActive(false);
-            waveSpawner.SetActive(true);
-            Debug.Log(waveSpawner.activeSelf);
-            Debug.Log(boss.gameObject.activeSelf);
-
-            boss.phaseTwo = true;
+        if (!phaseTwo && !changingPhases){
+            StartPhaseTwo();
         }
 
-        else if(boss.phaseThree && !isAlive){
-            Destroy(boss.gameObject);
+        else if(!phaseThree && phaseTwo && !changingPhases){
+            StartPhaseThree();
+        }
+
+        else if(!phaseFour && phaseThree && !changingPhases){
+            StartPhaseFour();
+        }
+
+        else if(phaseFour && !isAlive && !changingPhases){
+            Destroy(this.gameObject);
         }
 
     }
 
+    void StartPhaseTwo(){
+        changingPhases = true;
+        boss.isAttacking = false;
+        boss.gameObject.SetActive(false);
+        swingySword.SetActive(false);
+        waveSpawnerPhaseTwo.SetActive(true);
+        spinnyBois.SetActive(false);
+        phaseTwo = true;
+        changingPhases = false;
+    }
+
     public void StartPhaseThree(){
+        changingPhases = true;
+        phaseThree = true;
         print("Starting phase three");
-        waveSpawner.SetActive(false);
+        waveSpawnerPhaseTwo.SetActive(false);
+        waveSpawnerPhaseThree.SetActive(true);
+        bossCollider.enabled = false;
         boss.gameObject.GetComponent<Animator>().Play("Chase");
         boss.gameObject.transform.position = boss.spawnPoint;
+        transparentBossModel.SetActive(true);
+        normalBossModel.SetActive(false);
         boss.gameObject.SetActive(true);
-
-
-        Debug.Log(waveSpawner.activeSelf);
-        Debug.Log(boss.gameObject.activeSelf);
+        
+        
         
         
         HealthSystemForDummies bossHealth = boss.gameObject.GetComponent<HealthSystemForDummies>();
         bossHealth.ReviveWithMaximumHealth();
+        changingPhases = false;
+        
+    }
 
-        boss.phaseThree = true;
+    public void StartPhaseFour(){
+        changingPhases = true;
+        print("Starting phase four");
+        waveSpawnerPhaseThree.SetActive(false);
+        waveSpawnerPhaseFour.SetActive(true);
+        transparentBossModel.SetActive(false);
+        normalBossModel.SetActive(true);
+        boss.gameObject.transform.position = boss.spawnPoint;
+        bossCollider.enabled = true;
+
+        
+        
+        phaseFour = true;
+        changingPhases = false;
     }
 }

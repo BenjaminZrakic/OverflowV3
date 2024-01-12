@@ -5,8 +5,7 @@ using UnityEngine;
 public class Boss : Enemy
 {
 
-    public bool phaseTwo = false;
-    public bool phaseThree = false;
+
     public bool spinning = false;
     public Animator attackAnimator;
 
@@ -36,6 +35,7 @@ public class Boss : Enemy
             StartSpinning();
         }
 
+ 
         if (timePassed >= attackCD)
         {
             if (isAttacking){
@@ -48,24 +48,6 @@ public class Boss : Enemy
             
         }
 
-        /*
-        if(!spinning){
-            
-            if (timePassed >= attackCD)
-            {
-                if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
-                {
-                    isAttacking = true;
-                    animator.SetTrigger("attack");
-                    print("Attacky boi");
-                    timePassed = 0;
-                    
-                }
-                else{
-                    isAttacking = false;
-                }
-            }
-        }*/
         
 
         timePassed += Time.deltaTime;
@@ -105,20 +87,5 @@ public class Boss : Enemy
     public void StartSpinning(){
         attackAnimator.SetTrigger("spinning");
         spinning = true;
-    }
-
-
-    
-    
-    private void OnTriggerEnter(Collider other) {
-        if(!spinning){
-            isAttacking = true;
-            //print("Attacky boi");
-        }
-    }
-
-    private void OnTriggerExit(Collider other) {
-        isAttacking = false;
-        
     }
 }

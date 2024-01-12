@@ -10,6 +10,11 @@ public class DamageDealer : MonoBehaviour
     [SerializeField] public float weaponDamage;
 
     Collider attackCollider;
+
+    public float cameraShakeIntensity = 0.5f;
+    public float cameraShakeDuration = 0.2f;
+
+    
     void Start()
     {
         canDealDamage = false;
@@ -47,6 +52,7 @@ public class DamageDealer : MonoBehaviour
         if(other.gameObject.TryGetComponent(out Enemy enemy) && !hasDealtDamage.Contains(other.gameObject)){
             enemy.TakeDamage(weaponDamage);
             hasDealtDamage.Add(other.gameObject);
+            CameraShake.Instance.ShakeCamera(cameraShakeIntensity, cameraShakeDuration);
         }
         
         
