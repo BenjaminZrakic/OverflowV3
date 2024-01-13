@@ -13,6 +13,7 @@ public class Checkpoint : Interactable
     {
         base.Start();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame

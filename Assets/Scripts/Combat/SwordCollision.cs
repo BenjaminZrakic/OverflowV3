@@ -20,6 +20,10 @@ public class SwordCollision : MonoBehaviour
     private StaminaSystem staminaSystem;
     public float staminaCost = 10f;
 
+
+    public AudioClip[] SwordSwingAudioClips;
+    [Range(0, 1)] public float SwordAudioVolume = 0.5f;
+
     private void Start() {
         interactAction = GetComponentInChildren<PlayerInput>().actions["Attack"];
         interactAction.performed += Attack;
@@ -58,6 +62,8 @@ public class SwordCollision : MonoBehaviour
                     comboCounter++;
                     lastClickedTime = Time.time;
                     staminaSystem.AddToCurrentStamina(-staminaCost);
+
+                   
 
                     if (comboCounter >= combo.Count){
                         EndCombo();
@@ -101,6 +107,14 @@ public class SwordCollision : MonoBehaviour
     void EndCombo(){
         comboCounter = 0;
         lastComboEnd = Time.time;
+    }
+
+    void PlaySound(){
+         if (SwordSwingAudioClips.Length > 0)
+            {
+                var index = Random.Range(0, SwordSwingAudioClips.Length);
+                AudioSource.PlayClipAtPoint(SwordSwingAudioClips[index], transform.TransformPoint(this.gameObject.transform.position), SwordAudioVolume);
+            }
     }
 }
  

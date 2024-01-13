@@ -66,9 +66,14 @@ public class HealthSystem : MonoBehaviour
     }
  
     public void Die(bool isAlive)
-    {
+    {   
+        
         if(!isAlive){
-            transform.position = levelManager.spawnLocation;
+            if(levelManager.inBossFight){
+                levelManager.ResetBoss();
+            }
+        
+            gameObject.transform.position = levelManager.spawnLocation;
             healthSystem.AddToCurrentHealth(healthSystem.MaximumHealth);
         }
         

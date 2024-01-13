@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     public bool isAttacking = false;
 
     protected Vector3 direction;
+    
+    public float rotationSpeed = 10f;
  
     public virtual void Start()
     {
@@ -53,6 +55,7 @@ public class Enemy : MonoBehaviour
                 isAttacking = true;
                 animator.SetTrigger("attack");
                 timePassed = 0;
+                agent.SetDestination(transform.position);
                 
             }
             else{
@@ -67,6 +70,7 @@ public class Enemy : MonoBehaviour
             newDestinationCD = 0.5f;
             if(!isAttacking)
                 agent.SetDestination(player.transform.position);
+           
         }
         newDestinationCD -= Time.deltaTime;
 
@@ -77,7 +81,11 @@ public class Enemy : MonoBehaviour
         direction.y = 0;
 
         // Make the transform look in the direction.
-        transform.forward = direction;
+        Quaternion rot = Quaternion.LookRotation(direction);
+
+        if(!isAttacking)
+            //transform.forward = direction;
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, rotationSpeed * Time.deltaTime);
     }
  
     private void OnCollisionEnter(Collision collision)

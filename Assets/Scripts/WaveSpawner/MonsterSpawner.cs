@@ -23,6 +23,8 @@ public class MonsterSpawner : MonoBehaviour
 
     public bool bossMonsterSpawner = false;
 
+    public Interactable checkpoint;
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,8 +48,13 @@ public class MonsterSpawner : MonoBehaviour
                     
                     
                 }
-                else if (SpawnAfterWavesObject != null)
+
+                if (SpawnAfterWavesObject != null)
                     SpawnAfterWavesObject.SetActive(true);
+
+                if (checkpoint != null){
+                    checkpoint.isInteractable = true;
+                }
             }
         }
     }

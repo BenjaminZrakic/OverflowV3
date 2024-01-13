@@ -8,7 +8,7 @@ public class Interactable : MonoBehaviour
 	[Header("Interaction Data")]
 	public string interactableName="";
 	public float interactionDistance = 2;
-	[SerializeField] protected bool isInteractable = true;
+	[SerializeField] public bool isInteractable = true;
 
 	protected InteractableNameText interactableNameText;
 	GameObject interactableNameCanvas;

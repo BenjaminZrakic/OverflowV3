@@ -9,8 +9,6 @@ public class Boss : Enemy
     public bool spinning = false;
     public Animator attackAnimator;
 
-    public float rotationSpeed = 10f;
-
     public int attackCounter = 0;
 
     public bool inAttackAnimation = false;
@@ -41,6 +39,7 @@ public class Boss : Enemy
             if (isAttacking){
                 animator.SetTrigger("attack");
                 timePassed = 0;
+                agent.SetDestination(transform.position);
             }
             else{
                 animator.ResetTrigger("attack");

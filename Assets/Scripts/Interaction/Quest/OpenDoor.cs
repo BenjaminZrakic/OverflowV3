@@ -15,6 +15,6 @@ public class OpenDoor : MonoBehaviour
                 return;
             }
         }
-        doorToOpen.SetActive(false);
+        doorToOpen.GetComponent<Animator>().SetTrigger("open_door");
     }
 }

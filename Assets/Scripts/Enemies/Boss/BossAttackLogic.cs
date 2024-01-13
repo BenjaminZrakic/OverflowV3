@@ -45,6 +45,7 @@ public class BossAttackLogic : MonoBehaviour
 
         else if(phaseFour && !isAlive && !changingPhases){
             Destroy(this.gameObject);
+            GameObject.FindWithTag("FactoryDoor").GetComponent<Animator>().SetTrigger("open_door");
         }
 
     }

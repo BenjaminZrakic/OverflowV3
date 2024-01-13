@@ -30,7 +30,11 @@ public class InteractableNameText : MonoBehaviour
         }
         else if(interactable is Checkpoint)
         {
-            text.text = interactable.interactableName + "\n [E] Activate totem";
+            text.text = interactable.interactableName + "\n [E] Activate checkpoint";
+        }
+         else if(interactable is InteractableDoor)
+        {
+            text.text = interactable.interactableName + "\n [E] Open door";
         }
         else
         {

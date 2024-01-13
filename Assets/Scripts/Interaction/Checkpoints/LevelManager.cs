@@ -10,10 +10,24 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> EnemyList = new List<GameObject>();
     public List<MonsterSpawner> SpawnerList = new List<MonsterSpawner>();
 
+    public GameObject Boss;
+    public Vector3 BossSpawnLocation;
+    public GameObject BossPrefab;
+    public GameObject BossDoor;
+    public bool inBossFight = false;
+
     // Start is called before the first frame update
     void Start()
     {
         spawnLocation = player.transform.position;
+        BossSpawnLocation = Boss.transform.position;
+    }
+
+    public void ResetBoss(){
+        Destroy(Boss);
+        Boss = Instantiate(BossPrefab, BossSpawnLocation,Quaternion.identity);
+        BossDoor.GetComponent<Animator>().SetTrigger("open_door");
+        inBossFight = false;
     }
 
     public void ResetLevel(){
